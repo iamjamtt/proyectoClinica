@@ -630,9 +630,9 @@ public class consultaM extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtsintoma)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtsintoma)
+                            .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)))
@@ -723,16 +723,10 @@ public class consultaM extends javax.swing.JPanel {
     private javax.swing.JPanel btnAgregar;
     private javax.swing.JButton btnBusca;
     private javax.swing.JPanel btnGenrar;
-    private javax.swing.JPanel btnGenrar1;
-    private javax.swing.JPanel btnGenrar2;
-    private javax.swing.JPanel btnGenrar3;
     private javax.swing.JLabel btnSalir2;
     private javax.swing.JComboBox<String> cbomedicamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

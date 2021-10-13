@@ -26,8 +26,8 @@ public class login extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         placeholders();
-        txtUsername.setText("MED001");
-        txtPass.setText("123");
+//        txtUsername.setText("MED001");
+//        txtPass.setText("123");
     }
     
     void placeholders(){

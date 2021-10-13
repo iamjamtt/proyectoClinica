@@ -87,7 +87,7 @@ public class pacienteDao {
         return r;
     }
     
-    //buscar el id de la persona recien ingresada para invularlo con el paciente
+    //buscar el id de la persona recien ingresada para vincularlo con el paciente
     public int idPersona(){
         int id = 0;
         String sql = "SELECT max(idp) FROM persona WHERE estadop=1";

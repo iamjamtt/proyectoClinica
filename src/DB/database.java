@@ -10,6 +10,7 @@ public class database {
     String user="root";
     String pass="";
     
+    
     public Connection conectardb(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -19,4 +20,5 @@ public class database {
         }
         return con;
     }
+    
 }

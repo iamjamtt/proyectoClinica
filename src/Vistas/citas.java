@@ -17,10 +17,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.BorderLayout;
@@ -30,10 +27,8 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class citas extends javax.swing.JPanel {
@@ -68,12 +63,13 @@ public class citas extends javax.swing.JPanel {
         generarCodC();
     }
     
+    //Este metodo carga los datos del paciente en la caja de texto
     void cargarDatosPaciente(){
-        
         if(medicos.dniper==null || medicos.dniper.equals("")){
             if(txtdni.getText().equals("")){
                 
             }else{
+                //Aqui me hace una busqueda con el dni del paciente y luego me llena los datos en los campo de texto
                 dnip = txtdni.getText();
                 
                 int resp = padao.buscarPersonaPaciente(dnip);
@@ -106,6 +102,7 @@ public class citas extends javax.swing.JPanel {
             
     }
     
+    //este metodo genera el nro de orden de la cita
     void generarOrden(){
         String serie = cdao.maxOrden(medicos.fechac, medicos.idm);
         int j;
@@ -125,6 +122,7 @@ public class citas extends javax.swing.JPanel {
         }
     }
     
+    //aqui cargamos el medico, el consultorio y el nro de orden generada para la cita
     void cargarMedico(){
         if(medicos.idm==0){
             
@@ -151,7 +149,7 @@ public class citas extends javax.swing.JPanel {
                 ep2 = mdao.datosPersona(idp);
                 txtmedico.setText(ep2.getNombrep() + " " + ep2.getApellidop());
 
-                ee = edao.datosEspecialidad(medicos.ide);
+                ee = edao.datosEspecialidad(em.getIde());
                 txtconsultorio.setText(ee.getNombree());
                 
                 txtfechacita.setText(medicos.fechac);
@@ -165,6 +163,7 @@ public class citas extends javax.swing.JPanel {
         }
     }
     
+    //aqui generamos el codigo de cita
     void generarCodC(){
         String serie = cdao.consultarCodC();
         int j = 0;
@@ -185,13 +184,16 @@ public class citas extends javax.swing.JPanel {
         }
     }
     
+    //aqui ingresamos a la db los datos de la cita
     void ingresarCita(){
         String horacDB = cdao.horaCita(medicos.fechac, medicos.idm, (txthoracita.getText() + ":00"));
         System.out.println("Hora cita db: " + horacDB);
+        
+        //aqui validamos campos vacios
         if(txtdni.getText().equals("") || txthoracita.getText().equals("") || txtpaciente.getText().equals("") || txtmedico.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Campos Vacios");
             txtdni.requestFocus();
-        }else if((txthoracita.getText() + ":00").equals(horacDB)){
+        }else if((txthoracita.getText() + ":00").equals(horacDB)){ //aqaui validamos si la hora de la cita esta ocupada
             JOptionPane.showMessageDialog(null, "Hora de la cita ya ocupada");
         }else{
             String fechac = medicos.fechac;
@@ -224,7 +226,7 @@ public class citas extends javax.swing.JPanel {
             }    
 
             try {
-                JOptionPane.showMessageDialog(null, "Abriendo Voucher de Venta","Mensaje",1);
+                JOptionPane.showMessageDialog(null, "Abriendo Cita","Mensaje",1);
                 
                 //genera el pdf
                 pdf(codc, fecharegistro);
@@ -241,6 +243,7 @@ public class citas extends javax.swing.JPanel {
         }
     }
     
+    //metodo para limpiar campos y resetear algunos valores
     void limpiarFormualario(){
         txtdni.setText("");
         txtpaciente.setText("");
@@ -260,6 +263,7 @@ public class citas extends javax.swing.JPanel {
         generarCodC();
     }
 
+    //metodo para generar un pdf de la cita 
     public void pdf(String codigo, String fecharegistro) throws FileNotFoundException, DocumentException{
         FileOutputStream archivo = new FileOutputStream(codigo+".pdf");
         Document documento = new Document();
@@ -333,6 +337,7 @@ public class citas extends javax.swing.JPanel {
         
     }
     
+    //metodo para abrir el pdf
     public void abrirPDF(String codigo){
         try {
             File path = new File(codigo + ".pdf");

@@ -15,7 +15,7 @@ public class pacienteDao {
     DB.database con = new database();
     Connection acceso;
     
-    //inner join
+    //Aqui hacemos una consulta para mostrar los datos del paciente en una tabla
     public DefaultTableModel consultarPacienteInnerJoin(String b){
         String []titulos={"ID","DNI","NRO HISTORIA","NOMBRE","APELLIDO","SEXO"};
         DefaultTableModel m = new DefaultTableModel(null, titulos);
@@ -125,7 +125,7 @@ public class pacienteDao {
         return r;
     }
     
-    //actualizamos la tabla perrsona
+    //actualizamos la tabla persona
     public int updatePersonaPaciente(Object[] o) {
         int r = 0;
         String sql = "UPDATE persona SET dnip=?,nombrep=?,apellidop=?,sexop=?,emailp=?,direccionp=?,telefonop=? WHERE idp=?";
@@ -295,6 +295,7 @@ public class pacienteDao {
         return r;
     }
     
+    //aqui obtnemos el id del paciente ingresando su numero de historia
     public int idpa(String nro){
         int serie = 0; 
         String sql = "SELECT idpa FROM paciente WHERE estadopa=1 AND nrohistoriapa=?";

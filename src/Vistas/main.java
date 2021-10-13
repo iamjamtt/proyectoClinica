@@ -15,6 +15,7 @@ public class main extends javax.swing.JFrame {
         mostrarModulos();
     }
     
+    //cargar el modulo asistente
     void moduloAsistente(){
         asis.setSize(new Dimension(300, 400));
         asis.setLocation(0,0);
@@ -24,6 +25,7 @@ public class main extends javax.swing.JFrame {
         panelModulo.repaint();
     }
     
+    //cargar el modulo medico
     void moduloMedico(){
         medi.setSize(new Dimension(300, 400));
         medi.setLocation(0,0);
@@ -33,6 +35,7 @@ public class main extends javax.swing.JFrame {
         panelModulo.repaint();
     }
 
+    //aqui me muestra el modulo correspondiente a la persona queingreso al sistema, ya se mediico o asistente
     void mostrarModulos(){
         if(login.idm==0){
             moduloAsistente();

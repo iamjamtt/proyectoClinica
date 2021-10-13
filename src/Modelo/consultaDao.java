@@ -14,7 +14,7 @@ public class consultaDao {
     DB.database con = new database();
     Connection acceso;
     
-    //inner join
+    //Aqui lo que se hace es consultar a las tablas relacionadas a cita para mostrar los datos en una tabla y asi em medico pueda atender en su consultorio
     public DefaultTableModel consultaMostrarCitas(int idm, String b){
         String []titulos={"ID","PACIENTE","DNI","NRO HISTORIA","FECHA","HORA","NRO ORDEN"};
         DefaultTableModel m = new DefaultTableModel(null, titulos);
@@ -46,6 +46,7 @@ public class consultaDao {
         return m;
     }
     
+    //aqui me lo que me hace es obtener los datos del medicamento y cargarlo en un combo
     public void cargarComboMedicamentos(JComboBox cbo, String var){
         
         String sql = "SELECT nombreme FROM medicamentos WHERE codme LIKE '%" + var + "%' AND nombreme LIKE '%" + var + "%'";
@@ -66,6 +67,7 @@ public class consultaDao {
         }
     }
     
+    //aqui lo que se hace es devolverme el id del medicamento ingresando su nombre
     public int idme(String nombreme){
         int serie = 0; 
         String sql = "SELECT idme FROM medicamentos WHERE nombreme=?";
@@ -85,6 +87,7 @@ public class consultaDao {
         return serie;
     }
     
+    //aqui se ingresan los datos de medicamentos a la db
     public int addConsulta(Object[] o) {
         int r = 0;
         String sql = "INSERT INTO consulta(codco,fechaco,idm,idpa,estadoco,descripcionco) VALUES(?,?,?,?,?,?)";
@@ -106,6 +109,7 @@ public class consultaDao {
         return r;
     }
     
+    //aqui consultamos el codigo maximo de la consulta para poder generar uno mayor para cada consulta se se vaya a tratar
     public String consultarCodConsulta(){
         String serie = "";
         String sql = "SELECT max(codco) FROM consulta";
@@ -124,6 +128,7 @@ public class consultaDao {
         return serie;
     }
     
+    //aqui agregamos los detalles de la consulta que vienen hacer los medicamentos 
     public int addDetalleConsulta(Object[] o) {
         int r = 0;
         String sql = "INSERT INTO detalleconsulta(idco,idme,descripciond) VALUES(?,?,?)";
@@ -142,6 +147,7 @@ public class consultaDao {
         return r;
     }
     
+    //aqui obtenemos el id recien ingresado de la tabla consulta para poder mandarlo como valor en la tabla detalleconsulta
     public int obtIdConsulta(){
         int id = 0;
         
@@ -161,6 +167,7 @@ public class consultaDao {
         return id;
     }
     
+    //una ves que se haya realizado la consulta, lo que se hace en la tabla cita es ponerlo en modo "cita finalizada"
     //1=activo      2=desactivo     3=citaconcluida
     public int finalizarCita(int idc) {
         int r = 0;
@@ -178,6 +185,7 @@ public class consultaDao {
         return r;
     }
     
+    //esta consulta es para mostra datos en una tabla de las consultas realizadas 
     public DefaultTableModel consultaMostrarConsultas(String nrohistoriapa){
         String []titulos={"ID","CODIGO","DNI","PACIENTE","FECHA","SINTOMA"};
         DefaultTableModel m = new DefaultTableModel(null, titulos);

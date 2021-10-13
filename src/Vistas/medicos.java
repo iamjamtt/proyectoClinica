@@ -12,7 +12,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 public class medicos extends javax.swing.JPanel {
 
@@ -29,16 +28,18 @@ public class medicos extends javax.swing.JPanel {
     public medicos() {
         initComponents();
         cargarComboEspecialidad();
-        buscarPaciente("");
+        buscarMedico("");
         dniper = citas.dnip;
         
     }
     
+    //aqui me cargar los nombres de especialidad en su combobox
     void cargarComboEspecialidad(){
         mdao.cargarComboEspecialidad(cboEspecialidad);
     }
     
-    void buscarPaciente(String nombree){
+    //aqui bsucamos al medico por su especialidad
+    void buscarMedico(String nombree){ //nombree => nombre de la especialidad
         try {
             m = mdao.consultarMedicoInnerJoin(nombree);
             tablamedico.setModel(m);
@@ -60,6 +61,7 @@ public class medicos extends javax.swing.JPanel {
         }
     }
 
+    //buscamos con el combo y nos devuele al medico
     void buscarCombo(){
         especialidad = (String) cboEspecialidad.getSelectedItem();
         if(especialidad.equals("Seleccione")){
@@ -67,14 +69,15 @@ public class medicos extends javax.swing.JPanel {
         }
         System.out.println(especialidad);
         
-        buscarPaciente(especialidad);
+        buscarMedico(especialidad);
     }
     
+    //aqui lo que se hace es seleccionar al medico validando algunos campos y mandarlo a otra interfaz
     void seleccionarMedico(){
         
         int fila = tablamedico.getSelectedRow();
         
-        if(fechaCita.getDate() == null || cboEspecialidad.getSelectedIndex()==0){
+        if(fechaCita.getDate() == null){
             JOptionPane.showMessageDialog(null, "Campo de texto vacios");
         }else if(fila == -1){
             JOptionPane.showMessageDialog(null, "Seleccione una fila");

@@ -30,11 +30,13 @@ public class login extends javax.swing.JFrame {
 //        txtPass.setText("123");
     }
     
+    //placeholder de los campos 
     void placeholders(){
         TextPrompt a1 = new TextPrompt("Username*", txtUsername);
         TextPrompt a2 = new TextPrompt("Password*", txtPass);
     }
 
+    //aqui me valida el ingreso al sistema
     void validar(){
         String user = txtUsername.getText();
         String pass = txtPass.getText();

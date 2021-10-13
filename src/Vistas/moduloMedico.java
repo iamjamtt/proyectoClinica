@@ -120,6 +120,7 @@ public class moduloMedico extends javax.swing.JPanel {
 
     private void btnConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasMouseClicked
         // TODO add your handling code here:
+        //si damos click en el boton consulta nos abre la interfaz consulta
         consultas con = new consultas();
         
         con.setSize(new Dimension(900, 600));
@@ -142,6 +143,7 @@ public class moduloMedico extends javax.swing.JPanel {
 
     private void btnHCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHCMouseClicked
         // TODO add your handling code here:
+        //si damos click en el historiaclinica paciente nos abre la interfaz historiaclinica
         historiaclinica his = new historiaclinica();
         
         his.setSize(new Dimension(900, 600));

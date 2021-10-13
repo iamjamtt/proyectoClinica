@@ -27,10 +27,12 @@ public class pacientes extends javax.swing.JPanel {
         buscarPaciente();
     }
     
+    //metodo que me carga los placeholder en los campos de texto
     void placeholders(){
         TextPrompt a1 = new TextPrompt("Buscar Nro de Historia / Dni", txtBuscarPaciente);
     }
 
+    //metodo que muesta los datos del paciente y tambien me filtra mediante su dni o numero de historia
     void buscarPaciente(){
         try {
             m = padao.consultarPacienteInnerJoin(txtBuscarPaciente.getText());
@@ -52,6 +54,7 @@ public class pacientes extends javax.swing.JPanel {
         }
     }
     
+    // aqui me muestra las opciones del paciente como "modificar o eliminar"
     void opcionesPaciente(int nro){
         int fila = tablaPaciente.getSelectedRow();
         if(fila == -1){

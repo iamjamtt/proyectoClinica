@@ -122,6 +122,7 @@ public class moduloAsistente extends javax.swing.JPanel {
 
     private void btnPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacienteMouseClicked
         // TODO add your handling code here:
+        //si damos click en el boton paciente nos abre la interfaz paciente
         pacientes paci = new pacientes();
         
         paci.setSize(new Dimension(900, 600));
@@ -144,6 +145,7 @@ public class moduloAsistente extends javax.swing.JPanel {
 
     private void btnCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseClicked
         // TODO add your handling code here:
+        //si damos click en el boton citas nos abre la interfaz de citas
         modulocitas citas = new modulocitas();
         
         citas.setSize(new Dimension(900, 600));

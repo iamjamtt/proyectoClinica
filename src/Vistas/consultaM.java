@@ -56,10 +56,12 @@ public class consultaM extends javax.swing.JPanel {
         tablatratamiento.setRowHeight(25);
     }
 
+    //metodo para cargar un placeholder
     void placeholders(){
         TextPrompt a1 = new TextPrompt("Codigo", txtbuscarmedicamento);
     }
     
+    //metodo para cargar los datos del paciente en los campo de texto
     void cargarPaciente(){
         String nrohistoriapa = consultas.nroHistoria;
         
@@ -73,10 +75,12 @@ public class consultaM extends javax.swing.JPanel {
         txtpaciente.setText(ep.getNombrep() + " " + ep.getApellidop());
     }
     
+    //metodo para cargar los medicamentos en el combobox
     void cargarCombo(){
         codao.cargarComboMedicamentos(cbomedicamento, txtbuscarmedicamento.getText());
     }
     
+    //metodo para agregar el medicamento y la descripcion del medicamento a la tabla tratamiento
     void agregar(){
         if(txtbuscarmedicamento.getText().equals("") || txtsintoma.getText().equals("") || txtdescripcionmedicamento.getText().equals("") || cbomedicamento.getSelectedIndex()==0){
             JOptionPane.showMessageDialog(null, "Campo de textos vacios");
@@ -107,6 +111,7 @@ public class consultaM extends javax.swing.JPanel {
         }
     }
     
+    //metodo que me genera el codigo de la consulta
     String generarCodC(){
         String codco = "";
         String serie = codao.consultarCodConsulta();
@@ -130,6 +135,7 @@ public class consultaM extends javax.swing.JPanel {
         return codco;
     }
     
+    //metodo para agregar todos los datos de la consulta en la tabla
     void addConsulta(){
         
         if(txtsintoma.getText().equals("") || tablatratamiento.getRowCount() == 0){
@@ -175,7 +181,7 @@ public class consultaM extends javax.swing.JPanel {
             ee = edao.datosEspecialidad(em.getIde());
             String especialidad = ee.getNombree();
             
-            JOptionPane.showMessageDialog(null, "Abriendo Resta de Consulta","Mensaje",1);
+            JOptionPane.showMessageDialog(null, "Abriendo Reseta de Consulta","Mensaje",1);
             try {
                 pdf(codco, fechaco, medico, especialidad);
             } catch (Exception e) {
@@ -210,6 +216,7 @@ public class consultaM extends javax.swing.JPanel {
         }
     }
     
+    //metodo para limpiar la tabla tratamiento
     void limpiarTabla(){
         for (int i = 0; i < m.getRowCount(); i++) {
             m.removeRow(i);
@@ -217,6 +224,7 @@ public class consultaM extends javax.swing.JPanel {
         }
     }
     
+    //metodo para ingresar todos los datos en la tabla detalle de la consulta
     void addDetalleConsulta(){
         for(int i=0;i<tablatratamiento.getRowCount();i++){
             int idco = codao.obtIdConsulta();
@@ -234,7 +242,7 @@ public class consultaM extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Datos Detalle Consulta ingresado exitosamente","Mensaje",1); 
     }
     
-    
+    //metodo que me crea un pdf de la consulta
     public void pdf(String codigo, String fecharegistro, String medico, String especialidad) throws FileNotFoundException, DocumentException{
         FileOutputStream archivo = new FileOutputStream(codigo+".pdf");
         Document documento = new Document();
@@ -343,6 +351,7 @@ public class consultaM extends javax.swing.JPanel {
         
     }
     
+    //metodo que me abre el pdf generado
     public void abrirPDF(String codigo){
         try {
             File path = new File(codigo + ".pdf");

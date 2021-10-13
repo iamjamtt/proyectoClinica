@@ -26,10 +26,12 @@ public class modulocitas extends javax.swing.JPanel {
         mostrarCitas("", fechaActual());
     }
 
+    //metodo para asignar un placeholder a los campo de texto 
     void placeholders(){
         TextPrompt a1 = new TextPrompt("Buscar Dni", txtBuscaCitaDni);
     }
     
+    //metodo que me obtiene la fecha actual
     String fechaActual(){
         String fechaactual = "";
         
@@ -39,6 +41,7 @@ public class modulocitas extends javax.swing.JPanel {
         return fechaactual;
     }
     
+    //metodo que me conbierte a string la fecha para buscarlo despues 
     String fecha(){
         Date f = txtfecha.getDate();
         DateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -47,6 +50,7 @@ public class modulocitas extends javax.swing.JPanel {
         return fechac;
     }
     
+    //metodo que me muestra las citas generas en la tabla correspondiente
     void mostrarCitas(String dnip, String fechac){
         try {
             int idm = login.idm;
@@ -79,6 +83,7 @@ public class modulocitas extends javax.swing.JPanel {
         }
     }
     
+    //metodo que me carga las opciones que se puede realizar a la cita
     void opcionesPaciente(){
         int fila = tablaCitas.getSelectedRow();
         if(fila == -1){
@@ -343,7 +348,11 @@ public class modulocitas extends javax.swing.JPanel {
 
     private void btnBuscarCitaFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCitaFechaActionPerformed
         // TODO add your handling code here:
-        mostrarCitas("",fecha());
+        if(txtfecha.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Campo de texto de fecha vacio");
+        }else{
+            mostrarCitas("",fecha());
+        }
     }//GEN-LAST:event_btnBuscarCitaFechaActionPerformed
 
     private void txtBuscaCitaDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaCitaDniKeyTyped

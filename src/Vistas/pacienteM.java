@@ -3,7 +3,6 @@ package Vistas;
 import Entidad.paciente;
 import Entidad.persona;
 import Modelo.genNroHistoria;
-import Modelo.limiteDigitos;
 import Modelo.pacienteDao;
 import static Vistas.main.panelMain;
 import java.awt.BorderLayout;
@@ -25,11 +24,11 @@ public class pacienteM extends javax.swing.JPanel {
     
     public pacienteM() {
         initComponents();
-        limitarCampos();
         titulo();
         txtnrohistoria.setEditable(false);
     }
     
+    //aqui nos carga el titulo de la interfaz ya sea para ingresar o modificaar datos
     void titulo(){
         if(pacientes.tipo==1){
             txtTitulo.setText("");
@@ -46,11 +45,7 @@ public class pacienteM extends javax.swing.JPanel {
         }
     }
     
-    void limitarCampos(){
-        txtdni.setDocument(new limiteDigitos(8));
-        txttelefono.setDocument(new limiteDigitos(9));
-    }
-    
+    //aqui generamos el numero de historia del paciente 
     void generarHistoria(){
         String serie = padao.nroHistoria(); // CTA003
         int j;
@@ -74,6 +69,7 @@ public class pacienteM extends javax.swing.JPanel {
         }
     }
     
+    //aqui cargamos todos los datos del paciente para proceder a modificar
     void cargarDatosActualizar(){
         int idpa = pacientes.idpa; 
         
@@ -103,6 +99,7 @@ public class pacienteM extends javax.swing.JPanel {
         
     }
     
+    //este metodo me valida los datos del paciente y si todo esta bien me ingresa a la db correspondiente
     void agregarPaciente(){
         String dni = padao.buscarPersonaPacienteDni(txtdni.getText());
         if(txtnombre.getText().equals("") || txtapellido.getText().equals("") || txttelefono.getText().equals("") || txtdni.getText().equals("") || txtdireccion.getText().equals("") ||
@@ -176,6 +173,7 @@ public class pacienteM extends javax.swing.JPanel {
         }
     }
     
+    // metodo que me valida campos y si todo anda bien me actualiza los datos del paciente
     void actualizarPaciente(){
         if(txtnombre.getText().equals("") || txtapellido.getText().equals("") || txttelefono.getText().equals("") || txtdni.getText().equals("") || txtdireccion.getText().equals("") ||
                 txtemail.getText().equals("") || txtnrohistoria.getText().equals("") || cbosexo.getSelectedIndex()==0 || txtnacimiento.getDate() == null){

@@ -13,6 +13,7 @@ public class especialidadDao {
     DB.database con = new database();
     Connection acceso;
     
+    //en esta consulta lo que se hace es obtener el id ingresando el nombre de la especialidad
     public int idEspecialidad(String nombree){
         int ide = 0;
         String sql = "SELECT ide FROM especialidad WHERE nombree=?";
@@ -32,6 +33,7 @@ public class especialidadDao {
         return ide;
     }
     
+    //aqui obetenemos todos los datos de la tabla especialidad y lo retornamos en la entidad especialidad
     public Entidad.especialidad datosEspecialidad(int ide){
         Entidad.especialidad ee = new especialidad();
         

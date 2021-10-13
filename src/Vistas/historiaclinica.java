@@ -20,10 +20,12 @@ public class historiaclinica extends javax.swing.JPanel {
         placeholders();
     }
 
+    //metodo que me muestra un placeholcer en el campo de texto
     void placeholders(){
         TextPrompt a1 = new TextPrompt("Historia del Paciente", txtHC);
     }
     
+    //aqui me muestra los datos de las consultas realiadas al paciente y se puede filtrar mediante el numero de historia del paciente
     void mostrarCitas(String nrohistoriapa){
         try {
             m = codao.consultaMostrarConsultas(nrohistoriapa);
@@ -55,6 +57,7 @@ public class historiaclinica extends javax.swing.JPanel {
         }
     }
     
+    //aqui me abre el pdf generado de la consulta de cada paciente
     public void abrirPDF(String codigo){
         try {
             File path = new File(codigo + ".pdf");

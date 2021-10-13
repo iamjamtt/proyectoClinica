@@ -17,7 +17,7 @@ public class medicoDao {
     DB.database con = new database();
     Connection acceso;
     
-    //consulta para mostrar todas las especialidaddes en el combo
+    //consulta para mostrar todas las especialidaddes del medico en un combobox
     public void cargarComboEspecialidad(JComboBox cbo){
         Entidad.especialidad ee = new especialidad();
         
@@ -66,6 +66,7 @@ public class medicoDao {
         return m;
     }
     
+    //aqui obtenemos todos los datos de persona y lo guardamos en la entidad persona
     public Entidad.persona datosPersona(int idp){
         Entidad.persona ep = new persona();
         
@@ -95,6 +96,7 @@ public class medicoDao {
         return ep;
     }
     
+    //aqui obtenemos todos los datos de la tabla medico y lo guadamos en la entidad medico
     public Entidad.medico datosMedico(int idm){
         Entidad.medico em = new medico();
         

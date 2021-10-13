@@ -27,6 +27,7 @@ public class consultas extends javax.swing.JPanel {
         mostrarCita(fechaActual());
     }
 
+    //metodo para obtener la fecha actual
     String fechaActual(){
         String fechaactual = "";
         
@@ -36,6 +37,7 @@ public class consultas extends javax.swing.JPanel {
         return fechaactual;
     }
     
+    //metodo para mostrar en la tabla los datos de la cita a la cual se le realizaran una consulta
     void mostrarCita(String fechac){
         try {
             int idm = login.idm;
@@ -58,6 +60,7 @@ public class consultas extends javax.swing.JPanel {
         }
     }
     
+    //son las opciones que se muestran al dar anticlick en aluan fila de la tabla
     void opcionesCita(){
         int fila = tablacitas.getSelectedRow();
         if(fila == -1){

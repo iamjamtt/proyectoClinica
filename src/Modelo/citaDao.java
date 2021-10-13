@@ -13,6 +13,7 @@ public class citaDao {
     DB.database con = new database();
     Connection acceso;
     
+    // consultamos cuantas citas ya fueron generadas para esa fecha con el medico asignado
     public int orden(String fechac, int idm){
         int serie = 0;
         String sql = "SELECT count(fechac) FROM cita WHERE estadoc=1 AND fechac=? AND idm=?";
@@ -33,6 +34,7 @@ public class citaDao {
         return serie;
     }
     
+    // aqui consultamos cual fue el nro de orden mayor que se ingreso en la fecha y medico para asi aumentarlo y me ingrese la orden sigueinte (maximo 3 citas)
     public String maxOrden(String fechac, int idm){
         String serie = ""; 
         String sql = "SELECT MAX(ordenc) FROM cita WHERE estadoc=1 AND fechac=? AND idm=?";
@@ -53,6 +55,7 @@ public class citaDao {
         return serie;
     }
     
+    //aqui es la consulta basica de ingresar datos a la db
     public int addCita(Object[] o) {
         int r = 0;
         String sql = "INSERT INTO cita(fechac,horac,idm,ordenc,idpa,ida,estadoc,fecharegistroc,codc) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -77,7 +80,7 @@ public class citaDao {
         return r;
     }
     
-    //verificar si la hora de la cita ya esta copada
+    //en esta consulta se verifica si la hora de la cita la cual queremos ingresar ya esta ocupada
     public String horaCita(String fechac, int idm, String horac){
         String serie = ""; 
         String sql = "SELECT horac FROM cita WHERE estadoc=1 AND fechac=? AND idm=? AND horac=?";
@@ -99,6 +102,7 @@ public class citaDao {
         return serie;
     }
     
+    //aqui se conuslta el codigo maximo de cita que se encuentre en la db para asi generar uno mayor
     public String consultarCodC(){
         String serie = "";
         String sql = "SELECT max(codc) FROM cita";
@@ -111,12 +115,13 @@ public class citaDao {
                 serie = rs.getString(1);
             }
         } catch (Exception e) {
-            System.out.println("error en consiltar codigo e ventas " + e);
+            System.out.println("error en consultar codigo e ventas " + e);
         }
         
         return serie;
     }
     
+    //aqui hacemos una consulta a todas las tablas relacionas con la cita para así mostrar en una tabla los datos correspondientes 
     public DefaultTableModel consultaMostrarCitas(String dnip, String fechac){
         String []titulos={"ID","CODIGO","PACIENTE","DNI","NRO HISTORIA","MEDICO","FECHA","HORA","NRO ORDEN"};
         DefaultTableModel m = new DefaultTableModel(null, titulos);
@@ -149,6 +154,7 @@ public class citaDao {
         return m;
     }
         
+    //en esta metodo lo que realiza es un eliminar (desactivar) cualquier cita mediante su id
     public int deleteCita(int idc) {
         int r = 0;
         String sql = "UPDATE cita SET estadoc=2 WHERE idc=?";

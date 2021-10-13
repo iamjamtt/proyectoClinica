@@ -42,7 +42,7 @@ public class userDao {
         return eu;
     }
     
-    //obtengo los datos de la tabla asistente de acuerdo al id ded la persona vinvulada a ella
+    //obtengo los datos de la tabla asistente de acuerdo al id ded la persona vinculada a ella
     public Entidad.asistente validarAsistente(int idp){
         Entidad.asistente ea = new asistente();
         
